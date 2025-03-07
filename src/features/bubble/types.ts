@@ -79,8 +79,10 @@ export type ButtonTheme = {
   backgroundColor?: string;
   iconColor?: string;
   customIconSrc?: string;
+  defaultPosition: boolean;
   bottom?: number;
   right?: number;
+  left?: number;
   dragAndDrop?: boolean; // parameter to enable drag and drop(true or false)
   autoWindowOpen?: autoWindowOpenTheme;
 };

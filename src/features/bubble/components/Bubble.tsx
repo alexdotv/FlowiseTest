@@ -75,6 +75,7 @@ export const Bubble = (props: BubbleProps) => {
         toggleBot={toggleBot}
         isBotOpened={isBotOpened()}
         setButtonPosition={setButtonPosition}
+        defaultPosition={bubbleProps.theme?.button?.defaultPosition ?? false}
         dragAndDrop={bubbleProps.theme?.button?.dragAndDrop ?? false}
         autoOpen={bubbleProps.theme?.button?.autoWindowOpen?.autoOpen ?? false}
         openDelay={bubbleProps.theme?.button?.autoWindowOpen?.openDelay}
