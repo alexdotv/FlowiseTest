@@ -66,7 +66,7 @@ export const BubbleButton = (props: Props) => {
   };
 
   const handleButtonClick = () => {
-    console.log('NEW GIT VERSION!')
+    console.log('NEW GIT VERSION!');
 
     props.toggleBot();
     setUserInteracted(true); // Mark that the user has interacted
@@ -77,7 +77,7 @@ export const BubbleButton = (props: Props) => {
 
   createEffect(() => {
     // Automatically open the chat window if autoOpen is true
-    console.log('NEW GIT VERSION!')
+    console.log('NEW GIT VERSION!');
     if (props.autoOpen && (props.autoOpenOnMobile || window.innerWidth > 640)) {
       const delayInSeconds = props.openDelay ?? 2; // Default to 2 seconds if openDelay is not defined
       const delayInMilliseconds = delayInSeconds * 1000; // Convert seconds to milliseconds
@@ -103,9 +103,7 @@ export const BubbleButton = (props: Props) => {
           width: `${buttonSize}px`,
           height: `${buttonSize}px`,
           cursor: props.dragAndDrop ? 'grab' : 'pointer',
-          ...(props.defaultPosition
-            ? { right: `${position().right}px` }
-            : { left: `${position().left}px` })
+          ...(props.defaultPosition ? { right: `${position().right}px` } : { left: `${position().left}px` }),
         }}
       >
         <Show when={isNotDefined(props.customIconSrc)} keyed>
