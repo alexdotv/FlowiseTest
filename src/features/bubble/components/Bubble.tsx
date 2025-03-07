@@ -20,6 +20,7 @@ export const Bubble = (props: BubbleProps) => {
   const [buttonPosition, setButtonPosition] = createSignal({
     bottom: bubbleProps.theme?.button?.bottom ?? 20,
     right: bubbleProps.theme?.button?.right ?? 20,
+    left: bubbleProps.theme?.button?.right ?? 20,
   });
 
   const openBot = () => {
@@ -43,7 +44,6 @@ export const Bubble = (props: BubbleProps) => {
   const buttonBottom = props.theme?.button?.bottom ?? 20;
   const chatWindowBottom = buttonBottom + buttonSize + 10; // Adjust the offset here for slight shift
 
-  // Add viewport meta tag dynamically
   createEffect(() => {
     const meta = document.createElement('meta');
     meta.name = 'viewport';

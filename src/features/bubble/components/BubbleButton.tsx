@@ -24,7 +24,7 @@ export const BubbleButton = (props: Props) => {
   const [position, setPosition] = createSignal({
     bottom: props.bottom ?? defaultBottom,
     right: props.right ?? defaultRight,
-    left: props.left ?? defaultRight,
+    left: props.right ?? defaultRight,
   });
 
   const [isSmallScreen, setIsSmallScreen] = createSignal(false);
