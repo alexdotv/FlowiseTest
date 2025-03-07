@@ -5,7 +5,7 @@ import { ButtonTheme } from '../types';
 type Props = ButtonTheme & {
   isBotOpened: boolean;
   toggleBot: () => void;
-  defaultPosition: boolean;
+  position: 'left' | 'right';
   setButtonPosition: (position: { bottom: number; right: number; left: number }) => void;
   dragAndDrop: boolean;
   autoOpen?: boolean;
@@ -24,7 +24,7 @@ export const BubbleButton = (props: Props) => {
   const [position, setPosition] = createSignal({
     bottom: props.bottom ?? defaultBottom,
     right: props.right ?? defaultRight,
-    left: props.left ?? 0,
+    left: props.left ?? defaultRight,
   });
 
   const [isSmallScreen, setIsSmallScreen] = createSignal(false);
@@ -53,7 +53,7 @@ export const BubbleButton = (props: Props) => {
     const newPosition = {
       right: Math.min(Math.max(newRight, defaultRight), maxRight),
       bottom: position().bottom,
-      left: position().left,
+      left: Math.min(Math.max(newRight, defaultRight), maxRight),
     };
 
     setPosition(newPosition);
@@ -66,8 +66,6 @@ export const BubbleButton = (props: Props) => {
   };
 
   const handleButtonClick = () => {
-    console.log('NEW GIT VERSION!');
-
     props.toggleBot();
     setUserInteracted(true); // Mark that the user has interacted
     if (window.innerWidth <= 640) {
@@ -77,7 +75,6 @@ export const BubbleButton = (props: Props) => {
 
   createEffect(() => {
     // Automatically open the chat window if autoOpen is true
-    console.log('NEW GIT VERSION!');
     if (props.autoOpen && (props.autoOpenOnMobile || window.innerWidth > 640)) {
       const delayInSeconds = props.openDelay ?? 2; // Default to 2 seconds if openDelay is not defined
       const delayInMilliseconds = delayInSeconds * 1000; // Convert seconds to milliseconds
@@ -99,11 +96,12 @@ export const BubbleButton = (props: Props) => {
         style={{
           'background-color': props.backgroundColor ?? defaultButtonColor,
           'z-index': 42424242,
+          left: props.position === 'left' ? `${position().left}px` : undefined,
+          right: props.position === 'right' ? `${position().right}px` : undefined,
           bottom: `${position().bottom}px`,
           width: `${buttonSize}px`,
           height: `${buttonSize}px`,
           cursor: props.dragAndDrop ? 'grab' : 'pointer',
-          ...(props.defaultPosition ? { right: `${position().right}px` } : { left: `${position().left}px` }),
         }}
       >
         <Show when={isNotDefined(props.customIconSrc)} keyed>

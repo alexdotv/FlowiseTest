@@ -1,8 +1,10 @@
 type TooltipProps = {
     showTooltip: boolean;
+    type: 'left' | 'right';
     position: {
         bottom: number;
         right: number;
+        left?: number;
     };
     buttonSize: number;
     tooltipMessage?: string;

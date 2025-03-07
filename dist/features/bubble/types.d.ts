@@ -71,7 +71,7 @@ export type ButtonTheme = {
     backgroundColor?: string;
     iconColor?: string;
     customIconSrc?: string;
-    defaultPosition: boolean;
+    position: 'left' | 'right';
     bottom?: number;
     right?: number;
     left?: number;

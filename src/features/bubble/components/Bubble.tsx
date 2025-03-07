@@ -55,27 +55,27 @@ export const Bubble = (props: BubbleProps) => {
     };
   });
 
-  // const showTooltip = ;
-
   return (
     <>
       <style>{styles}</style>
       <Tooltip
         showTooltip={showTooltip() && !isBotOpened()}
         position={buttonPosition()}
+        type={bubbleProps.theme?.button?.position ? bubbleProps.theme?.button?.position : 'right'}
         buttonSize={buttonSize}
         toggleBot={toggleBot}
         tooltipMessage={bubbleProps.theme?.tooltip?.tooltipMessage}
         tooltipBackgroundColor={bubbleProps.theme?.tooltip?.tooltipBackgroundColor}
         tooltipTextColor={bubbleProps.theme?.tooltip?.tooltipTextColor}
-        tooltipFontSize={bubbleProps.theme?.tooltip?.tooltipFontSize} // Set the tooltip font size
+        tooltipFontSize={bubbleProps.theme?.tooltip?.tooltipFontSize}
       />
+
       <BubbleButton
         {...bubbleProps.theme?.button}
         toggleBot={toggleBot}
         isBotOpened={isBotOpened()}
         setButtonPosition={setButtonPosition}
-        defaultPosition={bubbleProps.theme?.button?.defaultPosition ?? false}
+        position={bubbleProps.theme?.button?.position ? bubbleProps.theme?.button?.position : 'right'}
         dragAndDrop={bubbleProps.theme?.button?.dragAndDrop ?? false}
         autoOpen={bubbleProps.theme?.button?.autoWindowOpen?.autoOpen ?? false}
         openDelay={bubbleProps.theme?.button?.autoWindowOpen?.openDelay}
@@ -87,7 +87,7 @@ export const Bubble = (props: BubbleProps) => {
           height: bubbleProps.theme?.chatWindow?.height ? `${bubbleProps.theme?.chatWindow?.height.toString()}px` : 'calc(100% - 150px)',
           width: bubbleProps.theme?.chatWindow?.width ? `${bubbleProps.theme?.chatWindow?.width.toString()}px` : undefined,
           transition: 'transform 200ms cubic-bezier(0, 1.2, 1, 1), opacity 150ms ease-out',
-          'transform-origin': 'bottom right',
+          'transform-origin': bubbleProps.theme?.button?.position === 'right' ? 'bottom right' : 'bottom left',
           transform: isBotOpened() ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 1)',
           'box-shadow': 'rgb(0 0 0 / 16%) 0px 5px 40px',
           'background-color': bubbleProps.theme?.chatWindow?.backgroundColor || '#ffffff',
@@ -97,7 +97,8 @@ export const Bubble = (props: BubbleProps) => {
           'background-repeat': 'no-repeat',
           'z-index': 42424242,
           bottom: `${Math.min(buttonPosition().bottom + buttonSize + 10, window.innerHeight - chatWindowBottom)}px`,
-          right: `${Math.min(buttonPosition().right, window.innerWidth - 410)}px`,
+          left: bubbleProps.theme?.button?.position === 'left' ? `${Math.min(buttonPosition().right, window.innerWidth - 410)}px` : undefined,
+          right: bubbleProps.theme?.button?.position === 'right' ? `${Math.min(buttonPosition().right, window.innerWidth - 410)}px` : undefined,
         }}
         class={
           `fixed sm:right-5  w-full sm:w-[400px] max-h-[704px] !rounded-[14px] ` +
