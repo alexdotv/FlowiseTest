@@ -79,6 +79,7 @@ export const GuestBubble = (props: Props) => {
             </For>
           </div>
         )}
+
         {props.message.message && (
           <span
             ref={userMessageEl}
