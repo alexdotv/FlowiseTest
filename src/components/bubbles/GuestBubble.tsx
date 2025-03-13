@@ -62,7 +62,7 @@ export const GuestBubble = (props: Props) => {
   return (
     <div class="flex justify-end mb-2 items-end guest-container" style={{ 'margin-left': '50px' }}>
       <div
-        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-4 py-2 gap-2 mr-2 break-all"
+        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-4 py-2 gap-2 mr-2 "
         data-testid="guest-bubble"
         style={{
           'background-color': props.backgroundColor ?? defaultBackgroundColor,
@@ -82,7 +82,7 @@ export const GuestBubble = (props: Props) => {
         {props.message.message && (
           <span
             ref={userMessageEl}
-            class="mr-2 whitespace-pre-wrap"
+            class="whitespace-normal"
             style={{
               'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`,
             }}
