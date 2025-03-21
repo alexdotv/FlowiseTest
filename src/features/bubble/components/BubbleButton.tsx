@@ -5,11 +5,12 @@ import { ButtonTheme } from '../types';
 type Props = ButtonTheme & {
   isBotOpened: boolean;
   toggleBot: () => void;
-  setButtonPosition: (position: { bottom: number; right: number }) => void;
+  position: 'left' | 'right';
+  setButtonPosition: (position: { bottom: number; right: number; left: number }) => void;
   dragAndDrop: boolean;
-  autoOpen?: boolean; // Optional parameter to control automatic window opening
-  openDelay?: number; // Optional parameter for delay time in seconds
-  autoOpenOnMobile?: boolean; // Optional parameter for opening on mobile
+  autoOpen?: boolean;
+  openDelay?: number;
+  autoOpenOnMobile?: boolean;
 };
 
 const defaultButtonColor = '#3B81F6';
@@ -23,6 +24,7 @@ export const BubbleButton = (props: Props) => {
   const [position, setPosition] = createSignal({
     bottom: props.bottom ?? defaultBottom,
     right: props.right ?? defaultRight,
+    left: props.right ?? defaultRight,
   });
 
   const [isSmallScreen, setIsSmallScreen] = createSignal(false);
@@ -51,6 +53,7 @@ export const BubbleButton = (props: Props) => {
     const newPosition = {
       right: Math.min(Math.max(newRight, defaultRight), maxRight),
       bottom: position().bottom,
+      left: Math.min(Math.max(newRight, defaultRight), maxRight),
     };
 
     setPosition(newPosition);
@@ -93,7 +96,8 @@ export const BubbleButton = (props: Props) => {
         style={{
           'background-color': props.backgroundColor ?? defaultButtonColor,
           'z-index': 42424242,
-          right: `${position().right}px`,
+          left: props.position === 'left' ? `${position().left}px` : undefined,
+          right: props.position === 'right' ? `${position().right}px` : undefined,
           bottom: `${position().bottom}px`,
           width: `${buttonSize}px`,
           height: `${buttonSize}px`,

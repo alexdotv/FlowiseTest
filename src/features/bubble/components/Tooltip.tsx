@@ -7,7 +7,8 @@ const defaultTooltipFontSize = 16; // Default font size for tooltip
 
 type TooltipProps = {
   showTooltip: boolean;
-  position: { bottom: number; right: number };
+  type: 'left' | 'right';
+  position: { bottom: number; right: number; left?: number }; // Добавьте left как необязательное
   buttonSize: number;
   tooltipMessage?: string;
   toggleBot: () => void;
@@ -53,7 +54,8 @@ const Tooltip = (props: TooltipProps) => {
         class="tooltip"
         onClick={handleButtonClick}
         style={{
-          right: `calc(${props.position.right}px + 3px)`,
+          left: props.position?.left && props.type === 'left' ? `calc(${props.position.left}px + 3px)` : undefined,
+          right: props.position?.right && props.type === 'right' ? `calc(${props.position.right}px + 3px)` : undefined,
           bottom: `${props.position.bottom + props.buttonSize + 10}px`,
           'box-shadow': 'rgb(0 0 0 / 12%) 0px 5px 10px',
           '--tooltip-background-color': backgroundColor,
