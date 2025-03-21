@@ -45,7 +45,7 @@ export const GuestBubble = (props: Props) => {
       const src = (item.data as string) ?? fileData;
       return (
         <audio class="w-[200px] h-10 block bg-cover bg-center rounded-none text-transparent" controls>
-          Your browser does not support the <audio /> tag.
+          Your browser does not support the &lt;audio&gt; tag.
           <source src={src} type={item.mime} />
         </audio>
       );
@@ -60,21 +60,14 @@ export const GuestBubble = (props: Props) => {
   };
 
   return (
-    <div
-      class="flex justify-end items-end guest-container"
-      style={{ 'margin-left': '50px', 'max-width': 'calc(100% - 50px)', 'box-sizing': 'border-box' }}
-    >
+    <div class="flex justify-end mb-2 items-end guest-container" style={{ 'margin-left': '50px' }}>
       <div
-        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-3 py-2 gap-2 !leading-5 !rounded-l-[18px] !rounded-tr-[18px] !rounded-br-[4px] text-wrap"
+        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-4 py-2 gap-2 mr-2 "
         data-testid="guest-bubble"
         style={{
           'background-color': props.backgroundColor ?? defaultBackgroundColor,
           color: props.textColor ?? defaultTextColor,
-          'overflow-wrap': 'break-word',
-          'word-break': 'normal',
-          'white-space': 'normal',
-          'max-width': '100%',
-          'box-sizing': 'border-box',
+          'border-radius': '6px',
         }}
       >
         {props.message.fileUploads && props.message.fileUploads.length > 0 && (
@@ -90,7 +83,7 @@ export const GuestBubble = (props: Props) => {
         {props.message.message && (
           <span
             ref={userMessageEl}
-            class="whitespace-normal "
+            class="whitespace-normal"
             style={{
               'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`,
             }}

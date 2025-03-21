@@ -332,13 +332,13 @@ export const BotBubble = (props: Props) => {
 
   return (
     <div>
-      <div class="flex flex-row justify-start items-end host-container" style={{ 'margin-right': '50px' }}>
+      <div class="flex flex-row justify-start mb-2 items-start host-container" style={{ 'margin-right': '50px' }}>
         <Show when={props.showAvatar}>
-          <Avatar initialAvatarSrc={props.avatarSrc} isSmall={true} />
+          <Avatar initialAvatarSrc={props.avatarSrc} />
         </Show>
         <div class="flex flex-col justify-start">
           {props.showAgentMessages && props.message.agentReasoning && (
-            <details ref={botDetailsEl} class=" px-4 py-2 ml-2 chatbot-host-bubble rounded-[6px]">
+            <details ref={botDetailsEl} class="mb-2 px-4 py-2 ml-2 chatbot-host-bubble rounded-[6px]">
               <summary class="cursor-pointer">
                 <span class="italic">Agent Messages</span>
               </summary>
@@ -377,11 +377,12 @@ export const BotBubble = (props: Props) => {
           {props.message.message && (
             <span
               ref={botMessageEl}
-              class="px-3 py-2 ml-2 max-w-full chatbot-host-bubble prose !leading-5 rounded-r-[18px] rounded-tl-[18px] rounded-bl-[4px]"
+              class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
               data-testid="host-bubble"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,
                 color: props.textColor ?? defaultTextColor,
+                'border-radius': '6px',
                 'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`,
               }}
             />
