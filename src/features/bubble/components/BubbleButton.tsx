@@ -130,7 +130,6 @@ export const BubbleButton = (props: Props) => {
             alt="Bubble button icon"
           />
         </Show>
-
         <svg
           viewBox="0 0 24 24"
           style={{ fill: props.iconColor ?? 'white' }}

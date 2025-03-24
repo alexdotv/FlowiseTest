@@ -47,7 +47,6 @@ const Tooltip = (props: TooltipProps) => {
           .map((arr) => arr.join(' '))
           .join('\n')
       : tooltipMessage;
-
   return (
     <Show when={!userInteracted() && props.showTooltip}>
       <div

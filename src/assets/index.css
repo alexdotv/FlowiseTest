@@ -479,7 +479,6 @@ textarea {
     cursor: default !important;
   }
 }
-
 .tooltip {
   position: fixed;
   background: var(--tooltip-background-color, black);
