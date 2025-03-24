@@ -69,7 +69,6 @@ export const Bubble = (props: BubbleProps) => {
         tooltipTextColor={bubbleProps.theme?.tooltip?.tooltipTextColor}
         tooltipFontSize={bubbleProps.theme?.tooltip?.tooltipFontSize}
       />
-
       <BubbleButton
         {...bubbleProps.theme?.button}
         toggleBot={toggleBot}
@@ -95,7 +94,7 @@ export const Bubble = (props: BubbleProps) => {
           'background-size': 'cover',
           'background-position': 'center',
           'background-repeat': 'no-repeat',
-          'z-index': 42424242,
+          'z-index': 100000,
           bottom: `${Math.min(buttonPosition().bottom + buttonSize + 10, window.innerHeight - chatWindowBottom)}px`,
           left: bubbleProps.theme?.button?.position === 'left' ? `${Math.min(buttonPosition().right, window.innerWidth - 410)}px` : undefined,
           right: bubbleProps.theme?.button?.position === 'right' ? `${Math.min(buttonPosition().right, window.innerWidth - 410)}px` : undefined,

@@ -95,7 +95,7 @@ export const BubbleButton = (props: Props) => {
         class={`fixed shadow-md rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 flex justify-center items-center animate-fade-in`}
         style={{
           'background-color': props.backgroundColor ?? defaultButtonColor,
-          'z-index': 42424242,
+          'z-index': 100000,
           left: props.position === 'left' ? `${position().left}px` : undefined,
           right: props.position === 'right' ? `${position().right}px` : undefined,
           bottom: `${position().bottom}px`,
@@ -130,7 +130,6 @@ export const BubbleButton = (props: Props) => {
             alt="Bubble button icon"
           />
         </Show>
-
         <svg
           viewBox="0 0 24 24"
           style={{ fill: props.iconColor ?? 'white' }}
