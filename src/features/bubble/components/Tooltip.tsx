@@ -51,7 +51,7 @@ const Tooltip = (props: TooltipProps) => {
   return (
     <Show when={!userInteracted() && props.showTooltip}>
       <div
-        class="tooltip"
+        class="tooltip z-100000"
         onClick={handleButtonClick}
         style={{
           left: props.position?.left && props.type === 'left' ? `calc(${props.position.left}px + 3px)` : undefined,
