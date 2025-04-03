@@ -43,6 +43,7 @@ export type FeedbackTheme = {
     color?: string;
 };
 export type ChatWindowTheme = {
+    showRefreshButton: boolean;
     showTitle?: boolean;
     showAgentMessages?: boolean;
     title?: string;

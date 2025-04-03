@@ -8,7 +8,7 @@ type Props = {
     onRequest?: (request: RequestInit) => Promise<void>;
     fileAnnotations?: any;
     showAvatar?: boolean;
-    avatarSrc?: string;
+    titleAvatarSrc?: string;
     backgroundColor?: string;
     textColor?: string;
     chatFeedbackStatus?: boolean;
