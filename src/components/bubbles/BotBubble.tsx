@@ -377,7 +377,7 @@ export const BotBubble = (props: Props) => {
           {props.message.message && (
             <span
               ref={botMessageEl}
-              class="px-3 py-2 ml-2 max-w-full chatbot-host-bubble prose !leading-5 rounded-r-[18px] rounded-tl-[18px] rounded-bl-[4px]"
+              class="px-3 py-2 ml-2 max-w-full chatbot-host-bubble prose !leading-6 rounded-r-[18px] rounded-tl-[18px] rounded-bl-[4px]"
               data-testid="host-bubble"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,
