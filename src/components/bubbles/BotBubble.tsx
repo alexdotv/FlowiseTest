@@ -18,7 +18,7 @@ type Props = {
   onRequest?: (request: RequestInit) => Promise<void>;
   fileAnnotations?: any;
   showAvatar?: boolean;
-  avatarSrc?: string;
+  titleAvatarSrc?: string;
   backgroundColor?: string;
   textColor?: string;
   chatFeedbackStatus?: boolean;
@@ -333,8 +333,8 @@ export const BotBubble = (props: Props) => {
   return (
     <div>
       <div class="flex flex-row justify-start items-end host-container" style={{ 'margin-right': '50px' }}>
-        <Show when={props.showAvatar}>
-          <Avatar initialAvatarSrc={props.avatarSrc} isSmall={true} />
+        <Show when={props.titleAvatarSrc}>
+          <Avatar initialAvatarSrc={props.titleAvatarSrc} isSmall={true} />
         </Show>
         <div class="flex flex-col justify-start">
           {props.showAgentMessages && props.message.agentReasoning && (

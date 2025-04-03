@@ -50,6 +50,7 @@ export type FeedbackTheme = {
 };
 
 export type ChatWindowTheme = {
+  showRefreshButton: boolean;
   showTitle?: boolean;
   showAgentMessages?: boolean; // parameter to show agent reasonings when using agentflows
   title?: string;
