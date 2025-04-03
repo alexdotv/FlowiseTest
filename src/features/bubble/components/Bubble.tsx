@@ -65,8 +65,8 @@ export const Bubble = (props: BubbleProps) => {
         buttonSize={buttonSize}
         toggleBot={toggleBot}
         tooltipMessage={bubbleProps.theme?.tooltip?.tooltipMessage}
-        tooltipBackgroundColor={bubbleProps.theme?.tooltip?.tooltipBackgroundColor}
-        tooltipTextColor={bubbleProps.theme?.tooltip?.tooltipTextColor}
+        tooltipBackgroundColor={bubbleProps.theme?.chatWindow?.botMessage?.backgroundColor}
+        tooltipTextColor={bubbleProps.theme?.chatWindow?.botMessage?.textColor}
         tooltipFontSize={bubbleProps.theme?.tooltip?.tooltipFontSize}
       />
       <BubbleButton

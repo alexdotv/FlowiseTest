@@ -90,7 +90,7 @@ export type ButtonTheme = {
 
 export type ToolTipTheme = {
   showTooltip?: boolean; // parameter to enable tooltip(true or false)
-  tooltipMessage?: string;
+  tooltipMessage?: [];
   tooltipBackgroundColor?: string;
   tooltipTextColor?: string;
   tooltipFontSize?: number;

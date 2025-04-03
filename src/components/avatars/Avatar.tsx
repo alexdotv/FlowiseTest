@@ -17,7 +17,7 @@ export const Avatar = (props: { initialAvatarSrc?: string; isSmall?: boolean }) 
           ` flex justify-center items-end rounded-full text-white relative flex-shrink-0 ` + (isMobile() ? 'w-6 h-6 text-sm' : 'w-10 h-10 text-xl')
         }
       >
-        <img src={avatarSrc()} alt="Bot avatar" class={`rounded-full object-cover w-full h-full ${props.isSmall ? '!h-8 !w-8' : ''}`} />
+        <img src={avatarSrc()} alt="Bot avatar" class={`rounded-full object-cover w-full h-full ${props.isSmall ? '!h-6 !w-6' : ''}`} />
       </figure>
     </Show>
   );

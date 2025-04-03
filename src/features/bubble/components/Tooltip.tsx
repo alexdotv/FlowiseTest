@@ -1,69 +1,107 @@
-import { createSignal, Show } from 'solid-js';
+import { createSignal, Show, For, onMount } from 'solid-js';
 
-const defaultTooltipMessage = 'Hi There 👋!';
-const defaultTooltipBackgroundColor = 'black';
-const defaultTooltipTextColor = 'white';
-const defaultTooltipFontSize = 16; // Default font size for tooltip
+const defaultTooltipMessage = ['Hi There 👋!'];
+const defaultTooltipBackgroundColor = '#f7f8ff';
+const defaultTooltipTextColor = '#303235';
+const defaultTooltipFontSize = 16;
 
 type TooltipProps = {
   showTooltip: boolean;
   type: 'left' | 'right';
-  position: { bottom: number; right: number; left?: number }; // Добавьте left как необязательное
+  position: { bottom: number; right: number; left?: number };
   buttonSize: number;
-  tooltipMessage?: string;
+  tooltipMessage?: string[];
   toggleBot: () => void;
   tooltipBackgroundColor?: string;
   tooltipTextColor?: string;
-  tooltipFontSize?: number; // Add tooltipFontSize to props
+  tooltipFontSize?: number;
 };
 
 const Tooltip = (props: TooltipProps) => {
   const tooltipMessage = props.tooltipMessage ?? defaultTooltipMessage;
   const backgroundColor = props.tooltipBackgroundColor ?? defaultTooltipBackgroundColor;
   const textColor = props.tooltipTextColor ?? defaultTooltipTextColor;
-  const fontSize = `${props.tooltipFontSize ?? defaultTooltipFontSize}px`; // Use tooltipFontSize if provided, otherwise default to 16px
+  const fontSize = `${props.tooltipFontSize ?? defaultTooltipFontSize}px`;
   const [userInteracted, setUserInteracted] = createSignal(false);
+  const [visibleMessages, setVisibleMessages] = createSignal<string[]>([]);
+
   const handleButtonClick = () => {
-    setUserInteracted(true); // Mark that the user has interacted
+    setUserInteracted(true);
     props.toggleBot();
   };
-  // Generate tooltip text with line breaks if needed
-  const formattedTooltipMessage =
-    tooltipMessage.length > 20
-      ? tooltipMessage
-          .split(' ')
-          .reduce<string[][]>(
-            (acc, curr) => {
-              const last = acc[acc.length - 1];
-              if (last && last.join(' ').length + curr.length <= 20) {
-                last.push(curr);
-              } else {
-                acc.push([curr]);
-              }
-              return acc;
-            },
-            [[]],
-          )
-          .map((arr) => arr.join(' '))
-          .join('\n')
-      : tooltipMessage;
+
+  onMount(() => {
+    if (props.showTooltip && !userInteracted()) {
+      tooltipMessage.forEach((message, index) => {
+        setTimeout(() => {
+          setVisibleMessages((prev) => [...prev, message]);
+        }, index * 4000);
+      });
+    }
+  });
+
   return (
     <Show when={!userInteracted() && props.showTooltip}>
       <div
-        class="tooltip z-100000"
+        class="absolute z-50 flex flex-col justify-start items-start bg-transparent dark:bg-transparent 
+        transition-all duration-200 transform origin-bottom w-[220px] max-w-[220px] cursor-pointer gap-2 overflow-visible"
         onClick={handleButtonClick}
         style={{
           left: props.position?.left && props.type === 'left' ? `calc(${props.position.left}px + 3px)` : undefined,
           right: props.position?.right && props.type === 'right' ? `calc(${props.position.right}px + 3px)` : undefined,
           bottom: `${props.position.bottom + props.buttonSize + 10}px`,
-          'box-shadow': 'rgb(0 0 0 / 12%) 0px 5px 10px',
-          '--tooltip-background-color': backgroundColor,
-          '--tooltip-text-color': textColor,
-          '--tooltip-font-size': fontSize,
         }}
       >
-        {formattedTooltipMessage}
+        <For each={visibleMessages()}>
+          {(message, index) => (
+            <div
+              class="relative px-4 py-[10px] w-[220px] chatbot-host-bubble tracking-normal prose !leading-5 
+              rounded-[20px] mb-2 transition-all duration-500 ease-out transform opacity-100 overflow-visible"
+              style={{
+                'background-color': backgroundColor,
+                color: textColor,
+                'font-size': fontSize,
+                opacity: 0,
+                transform: 'translateY(10px)',
+                animation: `fadeInUp 0.5s ease-out forwards ${index() * 0.3}s`,
+              }}
+            >
+              {message}
+            </div>
+          )}
+        </For>
       </div>
+      <style>
+        {`
+          .chatbot-host-bubble {
+            position: relative;
+          }
+
+          .chatbot-host-bubble::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: ${backgroundColor};
+            transform: rotate(45deg);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            bottom: -6px;
+            left: ${props.type === 'left' ? '20px' : 'auto'};
+            right: ${props.type === 'right' ? '20px' : 'auto'};
+          }
+
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
     </Show>
   );
 };

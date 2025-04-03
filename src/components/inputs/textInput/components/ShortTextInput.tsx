@@ -1,4 +1,4 @@
-import { createSignal, splitProps } from 'solid-js';
+import { splitProps } from 'solid-js';
 import { JSX } from 'solid-js/jsx-runtime';
 
 type ShortTextInputProps = {
@@ -56,13 +56,17 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
   return (
     <textarea
       ref={props.ref}
-      class="my-auto focus:outline-none bg-transparent px-4 py-2 flex-1 w-full min-h-[40px] max-h-[100px] scrollable-container text-area-class text-input disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100"
+      class={[
+        'my-auto focus:outline-none bg-transparent px-4 py-2 flex-1 w-full min-h-[40px] max-h-[100px] scrollable-container text-area-class text-input',
+        'disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100',
+        'text-base md:text-[length:var(--font-size,16px)]',
+      ].join(' ')}
       disabled={props.disabled}
       rows={1}
       style={{
-        'font-size': props.fontSize ? `${props.fontSize}px` : '16px',
         resize: 'none',
         height: `${props.height}px`,
+        '--font-size': props.fontSize ? `${props.fontSize}px` : undefined,
       }}
       onInput={handleInput}
       onKeyDown={handleKeyDown}
