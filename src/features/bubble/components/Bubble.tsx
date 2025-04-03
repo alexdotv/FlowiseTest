@@ -13,7 +13,7 @@ export type BubbleProps = BotProps & BubbleParams;
 
 export const Bubble = (props: BubbleProps) => {
   const [bubbleProps] = splitProps(props, ['theme']);
-
+  console.log('theme.chatWindow:', bubbleProps.theme?.chatWindow);
   const [isBotOpened, setIsBotOpened] = createSignal(false);
   const [showTooltip, setShowTooltip] = createSignal(bubbleProps.theme?.tooltip?.showTooltip ?? false);
   const [isBotStarted, setIsBotStarted] = createSignal(false);
@@ -108,6 +108,7 @@ export const Bubble = (props: BubbleProps) => {
         <Show when={isBotStarted()}>
           <div class="relative h-full">
             <Bot
+              showRefreshButton={bubbleProps.theme?.chatWindow?.showRefreshButton}
               toggleBot={toggleBot}
               badgeBackgroundColor={bubbleProps.theme?.chatWindow?.backgroundColor}
               bubbleBackgroundColor={bubbleProps.theme?.button?.backgroundColor ?? defaultButtonColor}

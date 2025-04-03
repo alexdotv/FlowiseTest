@@ -117,6 +117,7 @@ type observerConfigType = (accessor: string | boolean | object | MessageType[]) 
 export type observersConfigType = Record<'observeUserInput' | 'observeLoading' | 'observeMessages', observerConfigType>;
 
 export type BotProps = {
+  showRefreshButton?: boolean;
   chatflowid: string;
   apiHost?: string;
   onRequest?: (request: RequestInit) => Promise<void>;
@@ -1306,7 +1307,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
               'border-top-right-radius': props.isFullPage ? '0px' : '14px',
             }}
           >
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
               <Show when={props.titleAvatarSrc}>
                 <>
                   <Avatar initialAvatarSrc={props.titleAvatarSrc} />
@@ -1319,15 +1320,17 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
             </div>
 
             <div class="flex items-center">
-              <DeleteButton
-                sendButtonColor={props.bubbleTextColor}
-                type="button"
-                isDisabled={messages().length === 1}
-                class="my-2 ml-2"
-                on:click={clearChat}
-              >
-                <span style={{ 'font-family': 'Poppins, sans-serif' }}>Clear</span>
-              </DeleteButton>
+              <Show when={props.showRefreshButton}>
+                <DeleteButton
+                  sendButtonColor={props.bubbleTextColor}
+                  type="button"
+                  isDisabled={messages().length === 1}
+                  class="my-2 ml-2"
+                  on:click={clearChat}
+                >
+                  <span style={{ 'font-family': 'Poppins, sans-serif' }}>Clear</span>
+                </DeleteButton>
+              </Show>
 
               <ToggleBotButton
                 toggleBot={
@@ -1374,7 +1377,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
                         textColor={props.botMessage?.textColor}
                         feedbackColor={props.feedback?.color}
                         showAvatar={props.botMessage?.showAvatar}
-                        avatarSrc={props.botMessage?.avatarSrc}
+                        titleAvatarSrc={props.titleAvatarSrc}
                         chatFeedbackStatus={chatFeedbackStatus()}
                         fontSize={props.fontSize}
                         isLoading={loading() && index() === messages().length - 1}
