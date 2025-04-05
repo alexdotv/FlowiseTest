@@ -338,7 +338,7 @@ export const BotBubble = (props: Props) => {
         </Show>
         <div class="flex flex-col justify-start">
           {props.showAgentMessages && props.message.agentReasoning && (
-            <details ref={botDetailsEl} class=" px-4 py-2 ml-2 chatbot-host-bubble rounded-[6px]">
+            <details ref={botDetailsEl} class=" px-4 py-2 chatbot-host-bubble rounded-[6px]">
               <summary class="cursor-pointer">
                 <span class="italic">Agent Messages</span>
               </summary>
@@ -377,7 +377,7 @@ export const BotBubble = (props: Props) => {
           {props.message.message && (
             <span
               ref={botMessageEl}
-              class="px-3 py-2 ml-2 max-w-full chatbot-host-bubble prose !leading-6 rounded-r-[18px] rounded-tl-[18px] rounded-bl-[4px]"
+              class="px-4 py-[10px] ml-2 max-w-full chatbot-host-bubble prose !leading-5 rounded-[20px]"
               data-testid="host-bubble"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,

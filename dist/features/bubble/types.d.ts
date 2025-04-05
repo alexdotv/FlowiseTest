@@ -81,7 +81,7 @@ export type ButtonTheme = {
 };
 export type ToolTipTheme = {
     showTooltip?: boolean;
-    tooltipMessage?: string;
+    tooltipMessage?: [];
     tooltipBackgroundColor?: string;
     tooltipTextColor?: string;
     tooltipFontSize?: number;

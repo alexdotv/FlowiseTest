@@ -7,7 +7,7 @@ type TooltipProps = {
         left?: number;
     };
     buttonSize: number;
-    tooltipMessage?: string;
+    tooltipMessage?: string[];
     toggleBot: () => void;
     tooltipBackgroundColor?: string;
     tooltipTextColor?: string;

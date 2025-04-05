@@ -62,10 +62,10 @@ export const GuestBubble = (props: Props) => {
   return (
     <div
       class="flex justify-end items-end guest-container"
-      style={{ 'margin-left': '50px', 'max-width': 'calc(100% - 50px)', 'box-sizing': 'border-box' }}
+      style={{ 'margin-left': '100px', 'max-width': 'calc(100% - 50px)', 'box-sizing': 'border-box' }}
     >
       <div
-        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-3 py-2 gap-2 !leading-5 !rounded-l-[18px] !rounded-tr-[18px] !rounded-br-[4px] text-wrap"
+        class="max-w-full flex flex-col justify-center items-start chatbot-guest-bubble px-4 py-[10px] gap-2 !leading-5 !rounded-[20px] text-wrap"
         data-testid="guest-bubble"
         style={{
           'background-color': props.backgroundColor ?? defaultBackgroundColor,
@@ -90,7 +90,7 @@ export const GuestBubble = (props: Props) => {
         {props.message.message && (
           <span
             ref={userMessageEl}
-            class="whitespace-normal leading-6"
+            class="whitespace-normal leading-5"
             style={{
               'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`,
             }}
