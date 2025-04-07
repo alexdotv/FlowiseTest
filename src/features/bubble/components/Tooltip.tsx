@@ -43,7 +43,7 @@ const Tooltip = (props: TooltipProps) => {
   return (
     <Show when={!userInteracted() && props.showTooltip}>
       <div
-        class="absolute z-50 flex flex-col justify-start items-start bg-transparent dark:bg-transparent 
+        class="fixed z-50 flex flex-col justify-start items-start bg-transparent dark:bg-transparent 
         transition-all duration-200 transform origin-bottom w-fit max-w-[220px] cursor-pointer gap-2 overflow-visible"
         onClick={handleButtonClick}
         style={{
