@@ -44,7 +44,7 @@ const Tooltip = (props: TooltipProps) => {
     <Show when={!userInteracted() && props.showTooltip}>
       <div
         class="absolute z-50 flex flex-col justify-start items-start bg-transparent dark:bg-transparent 
-        transition-all duration-200 transform origin-bottom w-[220px] max-w-[220px] cursor-pointer gap-2 overflow-visible"
+        transition-all duration-200 transform origin-bottom w-fit max-w-[220px] cursor-pointer gap-2 overflow-visible"
         onClick={handleButtonClick}
         style={{
           left: props.position?.left && props.type === 'left' ? `calc(${props.position.left}px + 3px)` : undefined,
@@ -55,7 +55,7 @@ const Tooltip = (props: TooltipProps) => {
         <For each={visibleMessages()}>
           {(message, index) => (
             <div
-              class="relative px-4 py-[10px] w-[220px] chatbot-host-bubble tracking-normal prose !leading-5 
+              class="relative px-4 py-[10px] w-fit chatbot-host-bubble tracking-normal prose !leading-5 
               rounded-[20px] mb-2 transition-all duration-500 ease-out transform opacity-100 overflow-visible"
               style={{
                 'background-color': backgroundColor,
