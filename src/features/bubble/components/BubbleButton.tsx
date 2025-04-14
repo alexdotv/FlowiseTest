@@ -1,4 +1,4 @@
-import { createSignal, createEffect, Show } from 'solid-js';
+import { createSignal, createEffect, Show, onCleanup } from 'solid-js';
 import { isNotDefined, getBubbleButtonSize } from '@/utils/index';
 import { ButtonTheme } from '../types';
 
@@ -85,6 +85,23 @@ export const BubbleButton = (props: Props) => {
       }, delayInMilliseconds);
     }
   });
+
+  createEffect(() => {
+    const isOpened = props.isBotOpened;
+  
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpened) {
+        props.toggleBot();
+      }
+    };
+  
+    window.addEventListener('keydown', handleKeyDown);
+  
+    onCleanup(() => {
+      window.removeEventListener('keydown', handleKeyDown);
+    });
+  });
+  
 
   return (
     <Show when={!isSmallScreen() || !props.isBotOpened} keyed>
