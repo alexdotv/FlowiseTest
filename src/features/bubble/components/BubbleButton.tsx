@@ -88,20 +88,19 @@ export const BubbleButton = (props: Props) => {
 
   createEffect(() => {
     const isOpened = props.isBotOpened;
-  
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpened) {
         props.toggleBot();
       }
     };
-  
+
     window.addEventListener('keydown', handleKeyDown);
-  
+
     onCleanup(() => {
       window.removeEventListener('keydown', handleKeyDown);
     });
   });
-  
 
   return (
     <Show when={!isSmallScreen() || !props.isBotOpened} keyed>
